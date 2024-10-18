@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>トップメニュー</title>
+</head>
+
+<body>
+    <div th:insert="common/sourceList :: sourceList"></div>
+    <div class="container">
+        <h1>夏のアニメ一覧</h1>
+        <div class="float-end">
+		<a href="#" th:href="@{/form}"><button class="btn btn-primary">アニメ登録</button></a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>名前</th>
+                    <th>ジャンル</th>
+                    <th>放送開始日</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="anime : ${animeList}" class="align-middle">
+                    <td th:text="${anime.id}"></td>
+                    <td th:text="${anime.name}"></td>
+                    <td th:text="${anime.genre}"></td>
+                    <td th:text="${anime.startDate}"></td>
+                    <td>
+		                <a href="#" th:href="@{'/list/edit/' + ${anime.id}}"><button class="btn btn-primary">編集</button></a>
+		            </td>
+		            <td>
+		                <a href="#" th:href="@{'/list/delete/' + ${anime.id}}"><button class="btn btn-danger">削除</button></a>
+		            </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

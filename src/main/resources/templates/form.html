@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>トップメニュー</title>
+</head>
+	
+<body>
+	<div th:insert="common/sourceList :: sourceList"></div>
+	<div class="container">
+		<section class="">
+		<div class="border col-6 rounded-3 mx-auto">
+			<br>
+			<h2 class="text-center">アニメ登録</h2>
+			<br>
+			<div class="row">
+				<div class="col-md">
+					<form th:action="@{/form}" method="post" th:object="${animeForm}">
+						<div class="form-group">
+							<div class="col-10 mx-auto">
+								
+							<label>タイトル</label>
+							<input type="text" class="form-control mb-3" th:field="*{name}">
+							<div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+							
+							<label>ジャンル</label>
+							<input type="text" class="form-control mb-3" th:field="*{genre}">
+							<div class="text-danger" th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"></div>
+							
+							<label>放送開始日</label>
+							<input type="date" class="form-control mb-3" th:field="*{startDate}">
+							<div th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></div>
+							
+							<div class="text-center">
+							<a href="#" th:href="@{/list}" class="btn btn-primary mb-3">戻る</a>
+							<input class="btn btn-primary mb-3" type="submit" value="登録">
+							</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		</section>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ログイン画面</title>
+</head>
+<body>
+	<div th:insert="common/sourceList :: sourceList"></div>
+	<div th:replace="common/messageIcon :: messageIcon"></div>
+		<div class="container">
+			<h2>ログイン画面</h2>
+			<div class="alert d-flex align-items-center" role="alert" th:if="${message != null}">
+			<svg class="bi flex-shrink-0 me-2"width="24"height="24">
+				<use xlink:href="#exclamation-triangle-fill"/>
+			</svg>
+			</div>
+			<span th:text="${errorMsg}"></span>
+			<form th:action="@{/login}" method="post" th:object="${loginForm}">
+				<div class="form-group">
+					<div class="col-3">
+						<p><label>ログインID</label>
+							<input class="form-control" type="text" th:field="*{loginId}">
+						<p><label>パスワード</label>
+							<input class="form-control" type="password" th:field="*{password}">
+					</div>
+					<p><input class="btn btn-primary" type="submit" value="ログイン">
+				</div>
+			</form>
+			<a th:href="@{/signup}">新規登録</a>
+		</div>
+</body>
+</html>
